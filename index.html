@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> Piercetek Downtime Cost Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Using defer to ensure script.js loads after HTML is parsed -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1> Piercetek Downtime Cost Calculator</h1>
+    <p>
+        This calculator helps you estimate the direct labor cost of machine downtime and the cost of tracking downtime.
+        Any variable changes will require a recalculation – click on the <strong>"Recalculate"</strong> button.
+    </p>
+
+    <!-- Direct Labor Cost Section -->
+    <div class="section" id="directLaborSection">
+        <h2>Downtime Direct Labor Cost</h2>
+        <label for="employeesPerMachine">Number of employees at each machine:</label>
+        <input type="number" id="employeesPerMachine" value="1" min="0">
+
+        <label for="numMachines">Number of machines:</label>
+        <input type="number" id="numMachines" value="10" min="0">
+
+        <label for="downtimeMinutes">Minutes of downtime per machine in each shift:</label>
+        <input type="number" id="downtimeMinutes" value="5" min="0">
+
+        <label for="shiftsPerDay">Number of shifts per day:</label>
+        <input type="number" id="shiftsPerDay" value="2" min="0">
+
+        <label for="workingDays">Number of working days per year:</label>
+        <input type="number" id="workingDays" value="250" min="0">
+
+        <label for="laborRate">Average Labor Rate per hour (USD):</label>
+        <input type="number" id="laborRate" value="50" min="0" step="0.01">
+
+        <div id="directCostResult" class="result">
+            Direct cost of downtime (USD per year): $0.00
+        </div>
+    </div>
+
+    <!-- Downtime Tracking Cost Section -->
+    <div class="section" id="trackingCostSection">
+        <h2>Downtime Tracking Cost</h2>
+        <label for="trackingEmployees">Number of employees tracking downtime and creating reports/shift:</label>
+        <input type="number" id="trackingEmployees" value="1" min="0">
+
+        <label for="annualDowntimeDB">Annual Cost of DowntimeDB (USD):</label>
+        <input type="number" id="annualDowntimeDB" value="1399" min="0" step="0.01">
+
+        <label for="reportMinutes">Minutes per shift needed to create downtime reports:</label>
+        <input type="number" id="reportMinutes" value="10" min="0">
+
+        <label for="trackingShiftsPerDay">Number of shifts worked per day (for tracking):</label>
+        <input type="number" id="trackingShiftsPerDay" value="2" min="0">
+
+        <label for="trackingLaborRate">Average Labor Rate per hour tracking downtime (USD):</label>
+        <input type="number" id="trackingLaborRate" value="50" min="0" step="0.01">
+
+        <div id="trackingCostResult" class="result">
+            Cost of downtime tracking (USD per year): $0.00
+        </div>
+    </div>
+
+    <!-- Recalculate Button -->
+    <button id="recalculateBtn">Recalculate</button>
+
+    <!-- Potential Savings Section -->
+    <div class="section" id="savingsSection">
+        <h2>Potential Labor Savings Per Year</h2>
+        <p>
+            <em>Formula:</em> (Direct cost of downtime × Savings %) – Tracking Cost – Annual DowntimeDB Cost
+        </p>
+        <table>
+            <thead>
+            <tr>
+                <th>Actual Downtime Savings (%)</th>
+                <th>Machine Downtime Savings (USD)</th>
+                <th>Total Downtime Savings (USD w/DowntimeDB)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>10%</td>
+                <td id="saving10_machine">$0.00</td>
+                <td id="saving10_total">$0.00</td>
+            </tr>
+            <tr>
+                <td>20%</td>
+                <td id="saving20_machine">$0.00</td>
+                <td id="saving20_total">$0.00</td>
+            </tr>
+            <tr>
+                <td>30%</td>
+                <td id="saving30_machine">$0.00</td>
+                <td id="saving30_total">$0.00</td>
+            </tr>
+            <tr>
+                <td>50%</td>
+                <td id="saving50_machine">$0.00</td>
+                <td id="saving50_total">$0.00</td>
+            </tr>
+            <tr>
+                <td>75%</td>
+                <td id="saving75_machine">$0.00</td>
+                <td id="saving75_total">$0.00</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Other Costs Section -->
+    <div class="section" id="otherCostsSection">
+        <h2>Other costs of downtime:</h2>
+        <ul>
+            <li><strong>Overtime:</strong> Additional costs if downtime is replaced with overtime.</li>
+            <li><strong>Additional inventories:</strong> Higher inventories due to uncertainty in machine availability.</li>
+            <li><strong>Maintenance labor:</strong> Extra personnel needed to fix machines.</li>
+            <li><strong>Loss of revenue:</strong> Lost sales when orders are not fulfilled.</li>
+            <li><strong>Additional repair costs:</strong> For example, expedited shipping for spare parts.</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
